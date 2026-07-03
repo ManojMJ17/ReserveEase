@@ -12,7 +12,7 @@ export const LoadingSpinner: React.FC = () => {
                 </div>
             </div>
             <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">
-                Fetching latest details...
+                Preparing your dining details...
             </span>
         </div>
     );

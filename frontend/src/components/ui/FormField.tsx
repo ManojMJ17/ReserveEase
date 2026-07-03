@@ -50,7 +50,7 @@ export const FormField = React.forwardRef<HTMLInputElement, FormFieldProps>(
                             rightElement ? 'pr-10' : 'pr-3.5',
                             error
                                 ? 'border-rose-300 focus:ring-rose-500/10 focus:border-rose-500'
-                                : 'border-slate-200 focus:ring-violet-500/10 focus:border-violet-500',
+                                : 'border-slate-200 focus:ring-gold-500/15 focus:border-gold-500',
                             className,
                         ].join(' ')}
                         {...rest}

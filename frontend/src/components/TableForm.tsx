@@ -93,7 +93,7 @@ export const TableForm: React.FC<TableFormProps> = ({ isOpen, onClose, tableToEd
 
                 <div className="space-y-6">
                     <h3 className="text-xl font-extrabold text-slate-800 tracking-tight">
-                        {isEditMode ? `Edit Table ${tableToEdit?.tableNumber}` : 'Add New Table'}
+                        {isEditMode ? `Edit Table ${tableToEdit?.tableNumber}` : 'Add Seating Table'}
                     </h3>
 
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -107,7 +107,7 @@ export const TableForm: React.FC<TableFormProps> = ({ isOpen, onClose, tableToEd
                         />
 
                         <FormField
-                            label="Seating Capacity"
+                            label="Table Seating Capacity"
                             type="number"
                             min="1"
                             placeholder="4"
@@ -128,8 +128,8 @@ export const TableForm: React.FC<TableFormProps> = ({ isOpen, onClose, tableToEd
                                     className="h-4.5 w-4.5 rounded border-slate-300 text-violet-600 focus:ring-violet-500/20 focus:ring-offset-0 cursor-pointer"
                                     {...register('isActive')}
                                 />
-                                <label htmlFor="isActive" className="text-xs font-bold text-slate-650 cursor-pointer select-none">
-                                    Table is active and available for bookings
+                                <label htmlFor="isActive" className="text-xs font-bold text-slate-655 cursor-pointer select-none">
+                                    Online Reservation Booking Enabled
                                 </label>
                             </div>
                         )}
@@ -140,7 +140,7 @@ export const TableForm: React.FC<TableFormProps> = ({ isOpen, onClose, tableToEd
                                 Cancel
                             </Button>
                             <Button type="submit" isLoading={loading} className="shadow-md">
-                                {isEditMode ? 'Save Changes' : 'Add Table'}
+                                {isEditMode ? 'Save Changes' : 'Add Seating Table'}
                             </Button>
                         </div>
                     </form>

@@ -53,8 +53,8 @@ export const AdminReservationsPage: React.FC = () => {
     return (
         <div className="space-y-8 max-w-7xl mx-auto">
             <PageHeader
-                title="Reservations Manager"
-                subtitle="Search customer bookings, filter allocations by date, and modify slots."
+                title="Dining Reservations"
+                subtitle="Monitor, reallocate, search, or filter fine dining table reservations."
                 hasDivider
             />
 
@@ -69,7 +69,7 @@ export const AdminReservationsPage: React.FC = () => {
                             </div>
                             <input
                                 type="text"
-                                placeholder="Search by customer name..."
+                                placeholder="Search by guest name..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
                                 className="block w-full pl-10 pr-4 py-2 bg-white border border-slate-200 rounded-xl text-sm transition-all focus:outline-none focus:ring-4 focus:ring-violet-500/10 focus:border-violet-500 shadow-xs placeholder-slate-400 text-slate-700"

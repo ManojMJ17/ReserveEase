@@ -3,6 +3,8 @@
 
 @theme {
   --font-sans: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Standard Violet Theme (Used selectively for primary buttons) */
   --color-primary-50: #f5f3ff;
   --color-primary-100: #ede9fe;
   --color-primary-200: #ddd6fe;
@@ -13,11 +15,43 @@
   --color-primary-700: #6d28d9;
   --color-primary-800: #5b21b6;
   --color-primary-900: #4c1d95;
+
+  /* Luxury Hospitality Colors */
+  --color-forest-50: #f0f7f4;
+  --color-forest-100: #dcebe4;
+  --color-forest-200: #bbd6cb;
+  --color-forest-300: #8fb7a7;
+  --color-forest-400: #61937f;
+  --color-forest-500: #417663;
+  --color-forest-600: #315d4e;
+  --color-forest-700: #284c40;
+  --color-forest-800: #213f35;
+  --color-forest-900: #0C1E15;
+  /* Dark Forest Green */
+
+  --color-gold-50: #fdfaf2;
+  --color-gold-100: #f9f2d9;
+  --color-gold-200: #f1e0ac;
+  --color-gold-300: #e7ca79;
+  --color-gold-400: #cca023;
+  --color-gold-500: #b89047;
+  /* Gold */
+  --color-gold-600: #9e7530;
+  --color-gold-700: #7f5822;
+  --color-gold-800: #634017;
+  --color-gold-900: #513111;
 }
 
 body {
   font-family: var(--font-sans);
-  background-color: #f8fafc;
+  background-color: #FAF8F5;
+  /* Warm Cream */
+  /* Elegant menu paper background with subtle amber/gold light sources */
+  background-image:
+    radial-gradient(circle at 80% 10%, rgba(184, 144, 71, 0.05) 0%, transparent 60%),
+    radial-gradient(circle at 20% 90%, rgba(12, 30, 21, 0.03) 0%, transparent 70%);
+  background-attachment: fixed;
+
   color: #0f172a;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -28,15 +62,18 @@ body {
   width: 6px;
   height: 6px;
 }
+
 ::-webkit-scrollbar-track {
   background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #c5a880/40;
   border-radius: 9999px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #b89047/60;
 }
 
 /* Premium Animations */
@@ -45,18 +82,10 @@ body {
     opacity: 0;
     transform: translateY(8px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@keyframes pulseBorder {
-  0%, 100% {
-    border-color: rgba(124, 58, 237, 0.2);
-  }
-  50% {
-    border-color: rgba(124, 58, 237, 0.6);
   }
 }
 
@@ -69,33 +98,44 @@ body {
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(241, 245, 249, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .glass-navbar {
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(250, 248, 245, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
 
-/* Premium Shadow System */
+/* Premium Warm Shadows (Undertone of amber/gold/forest green) */
 .premium-shadow-sm {
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.02), 0 1px 3px 0 rgba(0, 0, 0, 0.03);
+  box-shadow: 0 1px 2px 0 rgba(184, 144, 71, 0.03), 0 1px 3px 0 rgba(184, 144, 71, 0.04);
 }
 
 .premium-shadow-md {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 2px 4px -1px rgba(0, 0, 0, 0.02), 0 0 0 1px rgba(0, 0, 0, 0.02);
+  box-shadow:
+    0 4px 10px -1px rgba(12, 30, 21, 0.02),
+    0 2px 6px -1px rgba(184, 144, 71, 0.015),
+    0 0 0 1px rgba(184, 144, 71, 0.03);
 }
 
 .premium-shadow-lg {
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.04), 0 8px 10px -6px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.025);
+  box-shadow:
+    0 12px 28px -5px rgba(184, 144, 71, 0.05),
+    0 8px 12px -6px rgba(12, 30, 21, 0.02),
+    0 0 0 1px rgba(184, 144, 71, 0.04);
 }
 
-.premium-shadow-hover {
+/* Luxury transitions and micro interactions */
+.luxury-hover-card {
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.premium-shadow-hover:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.03), 0 0 0 1px rgba(124, 58, 237, 0.1);
+.luxury-hover-card:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 24px 30px -5px rgba(184, 144, 71, 0.06),
+    0 10px 14px -5px rgba(12, 30, 21, 0.03),
+    0 0 0 1px rgba(184, 144, 71, 0.3);
+  border-color: rgba(184, 144, 71, 0.25);
 }

@@ -45,7 +45,7 @@ export const AdminLayout: React.FC = () => {
                                     }
                                 >
                                     <LayoutDashboard className="mr-2 h-4 w-4" />
-                                    Dashboard
+                                    Restaurant Overview
                                 </NavLink>
                                 <NavLink 
                                     to="/admin/reservations" 
@@ -58,7 +58,7 @@ export const AdminLayout: React.FC = () => {
                                     }
                                 >
                                     <CalendarDays className="mr-2 h-4 w-4" />
-                                    Reservations
+                                    Dining Reservations
                                 </NavLink>
                                 <NavLink 
                                     to="/admin/tables" 
@@ -71,7 +71,7 @@ export const AdminLayout: React.FC = () => {
                                     }
                                 >
                                     <Grid className="mr-2 h-4 w-4" />
-                                    Tables
+                                    Table Availability
                                 </NavLink>
                             </div>
                         </div>
@@ -124,7 +124,7 @@ export const AdminLayout: React.FC = () => {
                             }
                         >
                             <LayoutDashboard className="h-5 w-5" />
-                            Dashboard
+                            Restaurant Overview
                         </NavLink>
                         <NavLink 
                             to="/admin/reservations" 
@@ -138,7 +138,7 @@ export const AdminLayout: React.FC = () => {
                             }
                         >
                             <CalendarDays className="h-5 w-5" />
-                            Reservations
+                            Dining Reservations
                         </NavLink>
                         <NavLink 
                             to="/admin/tables" 
@@ -152,7 +152,7 @@ export const AdminLayout: React.FC = () => {
                             }
                         >
                             <Grid className="h-5 w-5" />
-                            Tables
+                            Table Availability
                         </NavLink>
                         <div className="border-t border-slate-800 pt-4 mt-2">
                             <div className="flex items-center gap-3 px-4 py-2.5 mb-2 bg-slate-850/50 border border-slate-800/30 rounded-xl">
@@ -177,7 +177,7 @@ export const AdminLayout: React.FC = () => {
             </nav>
 
             {/* Layout Main Content */}
-            <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-fade-in">
+            <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 animate-fade-in">
                 <Outlet />
             </main>
         </div>

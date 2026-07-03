@@ -47,13 +47,13 @@ export const TableCard: React.FC<TableCardProps> = ({ table, onEdit }) => {
                         {table.isActive ? 'Active' : 'Disabled'}
                     </Badge>
                     <div className="text-[10px] text-slate-400 font-bold tracking-widest bg-slate-50 border border-slate-100/50 px-2 py-0.5 rounded-md">
-                        CAPACITY: {table.capacity}
+                        SEATS: {table.capacity}
                     </div>
                 </div>
 
                 {/* Body Details */}
                 <div className="flex items-center gap-4 mt-2">
-                    <div className="p-3.5 bg-violet-50 text-violet-600 rounded-xl shrink-0 group-hover:scale-110 transition-transform duration-300">
+                    <div className="p-3.5 bg-gold-50 text-gold-500 rounded-xl shrink-0 group-hover:scale-110 transition-transform duration-300">
                         <Armchair className="h-6 w-6 stroke-[1.5]" />
                     </div>
                     <div>
@@ -61,7 +61,7 @@ export const TableCard: React.FC<TableCardProps> = ({ table, onEdit }) => {
                             Table {table.tableNumber}
                         </h3>
                         <p className="text-xs text-slate-500 font-medium mt-0.5">
-                            Accommodates up to {table.capacity} guests
+                            Accommodates party size up to {table.capacity} guests
                         </p>
                     </div>
                 </div>
@@ -76,7 +76,7 @@ export const TableCard: React.FC<TableCardProps> = ({ table, onEdit }) => {
                     leftIcon={<Edit className="h-3.5 w-3.5" />}
                     className="flex-1 justify-center py-2"
                 >
-                    Edit Table
+                    Edit Details
                 </Button>
 
                 {table.isActive && (

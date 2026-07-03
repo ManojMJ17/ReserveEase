@@ -30,16 +30,16 @@ export const AdminTablesPage: React.FC = () => {
     return (
         <div className="space-y-8 max-w-7xl mx-auto">
             <PageHeader
-                title="Tables Configuration"
-                subtitle="Establish seating capacities, modify labels, or toggle online reservation availability."
+                title="Table Availability"
+                subtitle="Establish guest seating capacities, modify table numbers, or toggle online booking states."
                 hasDivider
                 action={
                     <Button 
                         onClick={handleAdd} 
                         leftIcon={<PlusCircle className="h-4 w-4" />}
-                        className="bg-violet-650 hover:bg-violet-550 text-white shadow-md shadow-violet-650/15"
+                        className="bg-[#b89047] hover:bg-[#a6803b] text-white border-transparent shadow-md shadow-gold-500/15"
                     >
-                        Add New Table
+                        Add Dining Table
                     </Button>
                 }
             />
@@ -50,7 +50,7 @@ export const AdminTablesPage: React.FC = () => {
                     <LoadingSpinner />
                 </div>
             ) : tables.length === 0 ? (
-                <EmptyState message="No physical tables have been configured. Create table records to enable booking allocations!" />
+                <EmptyState message="No physical tables have been configured. Add dining tables to enable guest bookings." />
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {tables.map((table) => (

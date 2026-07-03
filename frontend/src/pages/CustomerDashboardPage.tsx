@@ -42,22 +42,24 @@ export const CustomerDashboardPage: React.FC = () => {
 
     return (
         <div className="space-y-10 max-w-7xl mx-auto">
-            {/* Greeting Hero Block */}
-            <div className="relative rounded-3xl overflow-hidden bg-slate-900 text-white p-8 sm:p-12 shadow-xl border border-slate-800">
-                {/* Decorative glow shapes */}
-                <div className="absolute right-0 top-0 w-80 h-80 rounded-full bg-violet-600/25 blur-3xl pointer-events-none" />
-                <div className="absolute left-[30%] bottom-0 w-60 h-60 rounded-full bg-indigo-500/10 blur-2xl pointer-events-none" />
+            {/* Greeting Hero Block with full-width restaurant image background and dark gradient overlay */}
+            <div 
+                className="relative rounded-3xl overflow-hidden text-white p-8 sm:p-12 shadow-xl border border-slate-900 bg-cover bg-center"
+                style={{ backgroundImage: 'url("/images/hero-restaurant.jpg")' }}
+            >
+                {/* Dark gradient overlay covering the image */}
+                <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/70 to-slate-900/30 z-0 pointer-events-none" />
                 
                 <div className="max-w-2xl relative z-10 space-y-4">
-                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-violet-500/10 text-violet-300 border border-violet-500/20">
+                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest bg-[#b89047]/20 text-[#FAF8F5] border border-[#b89047]/30">
                         Dining Portal
                     </span>
                     <div className="space-y-2">
                         <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
-                            Welcome back, <span className="text-violet-400">{user?.name || 'Guest'}</span>
+                            Welcome back, <span className="text-[#b89047]">{user?.name || 'Guest'}</span>
                         </h1>
-                        <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
-                            Create new bookings, review table allocations, and check your reservation details seamlessly.
+                        <p className="text-slate-350 text-sm sm:text-base leading-relaxed">
+                            Reserve your next dining experience with ease. Manage your current bookings or browse available spots below.
                         </p>
                     </div>
                     <div className="pt-2">
@@ -65,9 +67,9 @@ export const CustomerDashboardPage: React.FC = () => {
                             size="md"
                             onClick={() => navigate('/reservations')}
                             leftIcon={<PlusCircle className="h-4.5 w-4.5" />}
-                            className="bg-violet-600 hover:bg-violet-500 text-white shadow-lg shadow-violet-600/30"
+                            className="bg-[#b89047] hover:bg-[#a6803b] text-white border-transparent shadow-lg shadow-[#b89047]/20"
                         >
-                            Book a New Table
+                            Reserve a New Table
                         </Button>
                     </div>
                 </div>
@@ -81,7 +83,7 @@ export const CustomerDashboardPage: React.FC = () => {
                     </div>
                     <div>
                         <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">
-                            Total Bookings
+                            Total Reservations
                         </div>
                         <div className="text-3xl font-extrabold text-slate-800 mt-1">{totalReservations}</div>
                     </div>
@@ -93,7 +95,7 @@ export const CustomerDashboardPage: React.FC = () => {
                     </div>
                     <div>
                         <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">
-                            Upcoming
+                            Upcoming Dining
                         </div>
                         <div className="text-3xl font-extrabold text-slate-800 mt-1">{upcomingReservations}</div>
                     </div>
@@ -105,7 +107,7 @@ export const CustomerDashboardPage: React.FC = () => {
                     </div>
                     <div>
                         <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">
-                            Cancelled
+                            Cancelled Dining
                         </div>
                         <div className="text-3xl font-extrabold text-slate-800 mt-1">{cancelledReservations}</div>
                     </div>
@@ -117,7 +119,7 @@ export const CustomerDashboardPage: React.FC = () => {
                 {/* Recent bookings list */}
                 <div className="lg:col-span-2 space-y-4">
                     <div className="flex justify-between items-center">
-                        <h2 className="text-lg font-bold text-slate-800">Recent Reservations</h2>
+                        <h2 className="text-lg font-bold text-slate-800">Recent Dining Bookings</h2>
                         <Button
                             variant="ghost"
                             size="sm"
@@ -131,14 +133,14 @@ export const CustomerDashboardPage: React.FC = () => {
 
                     {recentReservations.length === 0 ? (
                         <Card className="flex flex-col items-center justify-center p-8 text-center border-dashed border-slate-200">
-                            <p className="text-sm text-slate-400 font-medium">No recent reservations found.</p>
+                            <p className="text-sm text-slate-400 font-medium">No dining reservations yet.</p>
                             <Button
                                 variant="ghost"
                                 size="sm"
                                 onClick={() => navigate('/reservations')}
-                                className="mt-3 text-violet-600"
+                                className="mt-3 text-violet-650"
                             >
-                                Book your first table
+                                Reserve your first table and enjoy your next dining experience.
                             </Button>
                         </Card>
                     ) : (
@@ -182,16 +184,16 @@ export const CustomerDashboardPage: React.FC = () => {
 
                 {/* Right side helper info */}
                 <div className="space-y-6">
-                    <h2 className="text-lg font-bold text-slate-800">Dining Rules &amp; Information</h2>
+                    <h2 className="text-lg font-bold text-slate-800">Guest Guidelines &amp; Policy</h2>
                     <Card className="bg-slate-50 border-slate-150 p-6 space-y-4">
                         <div className="flex gap-3">
                             <div className="p-2 rounded-lg bg-violet-600/10 text-violet-600 self-start shrink-0">
                                 <HelpCircle className="h-4.5 w-4.5" />
                             </div>
                             <div>
-                                <h4 className="text-sm font-bold text-slate-800">Automatic Allocation</h4>
+                                <h4 className="text-sm font-bold text-slate-800">Smart Seating Allocation</h4>
                                 <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-                                    Our system dynamically assigns the best-fitting available table based on guest count and reservation timing.
+                                    To provide the finest dining experience, our system automatically selects the ideal table configuration based on party size and service time.
                                 </p>
                             </div>
                         </div>
@@ -201,9 +203,9 @@ export const CustomerDashboardPage: React.FC = () => {
                                 <HelpCircle className="h-4.5 w-4.5" />
                             </div>
                             <div>
-                                <h4 className="text-sm font-bold text-slate-800">Cancellation Policy</h4>
+                                <h4 className="text-sm font-bold text-slate-800">Booking Cancellation Policy</h4>
                                 <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-                                    Reservations can be cancelled up to the reservation time. Cancelled tables are immediately returned to the system pool.
+                                    We appreciate timely updates. Cancellations can be performed up to the scheduled dining time, which immediately releases the table for other guests.
                                 </p>
                             </div>
                         </div>

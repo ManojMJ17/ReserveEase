@@ -38,18 +38,27 @@ export const LoginPage: React.FC = () => {
 
     return (
         <div className="w-full space-y-6">
-            <div className="text-center space-y-1.5">
-                <h2 className="text-2xl font-extrabold text-slate-800 tracking-tight">Welcome Back</h2>
-                <p className="text-sm text-slate-500 font-medium">Enter your credentials to access your account</p>
+            {/* Divider and Serif Heading */}
+            <div className="text-center space-y-2">
+                <div className="w-full flex items-center justify-center">
+                    <div className="h-px bg-gradient-to-r from-transparent via-[#b89047]/40 to-transparent w-24" />
+                </div>
+                <h2 className="text-3xl font-extrabold text-[#0C1E15] tracking-tight font-serif">
+                    Welcome Back
+                </h2>
+                <p className="text-xs text-slate-500 font-semibold tracking-wide uppercase">
+                    Enter your credentials to access your account
+                </p>
             </div>
-            
+
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                 <FormField
                     label="Email Address"
                     type="email"
                     placeholder="you@example.com"
-                    icon={<Mail className="h-4 w-4" />}
+                    icon={<Mail className="h-4.5 w-4.5 text-[#b89047] stroke-[1.8]" />}
                     error={errors.email?.message}
+                    className="py-3.5 bg-white/45 border-white/20 text-slate-850 placeholder-slate-500 focus:bg-white/75 focus:border-[#b89047]"
                     {...register('email', {
                         required: 'Email is required',
                         pattern: {
@@ -63,17 +72,18 @@ export const LoginPage: React.FC = () => {
                     label="Password"
                     type={showPassword ? 'text' : 'password'}
                     placeholder="••••••"
-                    icon={<Lock className="h-4 w-4" />}
+                    icon={<Lock className="h-4.5 w-4.5 text-[#b89047] stroke-[1.8]" />}
                     rightElement={
                         <button
                             type="button"
                             onClick={() => setShowPassword(!showPassword)}
-                            className="text-slate-400 hover:text-slate-600 focus:outline-none cursor-pointer p-1 rounded-md hover:bg-slate-100 transition-colors"
+                            className="text-slate-400 hover:text-slate-600 focus:outline-none cursor-pointer p-1.5 rounded-lg hover:bg-slate-100/50 transition-colors"
                         >
                             {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                         </button>
                     }
                     error={errors.password?.message}
+                    className="py-3.5 bg-white/45 border-white/20 text-slate-850 placeholder-slate-500 focus:bg-white/75 focus:border-[#b89047]"
                     {...register('password', {
                         required: 'Password is required',
                         minLength: {
@@ -83,14 +93,18 @@ export const LoginPage: React.FC = () => {
                     })}
                 />
 
-                <Button type="submit" isLoading={loading} className="w-full mt-2 py-3">
+                <Button
+                    type="submit"
+                    isLoading={loading}
+                    className="w-full mt-4 py-3.5 bg-[#0C1E15] hover:bg-[#b89047] hover:border-transparent active:bg-[#9e7530] text-[#FAF8F5] border-transparent rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 font-bold uppercase tracking-wider text-xs"
+                >
                     {loading ? 'Signing in...' : 'Sign In'}
                 </Button>
             </form>
 
-            <div className="text-center text-xs border-t border-slate-100 pt-5">
-                <span className="text-slate-400 font-medium">Don't have an account? </span>
-                <Link to="/register" className="font-semibold text-violet-600 hover:text-violet-500 transition-colors">
+            <div className="text-center text-xs border-t border-slate-250/30 pt-5">
+                <span className="text-slate-500 font-semibold">Don't have an account? </span>
+                <Link to="/register" className="font-bold text-[#b89047] hover:text-[#9e7530] transition-colors">
                     Register here
                 </Link>
             </div>

@@ -48,13 +48,13 @@ export const ReservationCard: React.FC<ReservationCardProps> = ({ reservation })
     // Extract table details if object is populated
     const tableInfo = typeof reservation.table === 'object' && reservation.table !== null
         ? `Table ${reservation.table.tableNumber} (Capacity: ${reservation.table.capacity})`
-        : 'Assigned Automatically';
+        : 'Allocated Automatically';
 
     return (
         <Card hoverable className="flex flex-col justify-between border-slate-100/90 relative overflow-hidden group">
             {/* Soft border indicator at the top based on status */}
             <div className={`absolute top-0 left-0 right-0 h-1 transition-all duration-300 ${
-                isCancelled ? 'bg-rose-500' : 'bg-violet-600'
+                isCancelled ? 'bg-rose-500' : 'bg-gold-500'
             }`} />
 
             <div className="pt-2">
@@ -94,7 +94,7 @@ export const ReservationCard: React.FC<ReservationCardProps> = ({ reservation })
                     </div>
 
                     <div className="flex items-center gap-3 text-sm border-t border-slate-100 pt-4 mt-2">
-                        <div className="p-2 bg-violet-50 text-violet-600 rounded-lg shrink-0">
+                        <div className="p-2 bg-gold-50 text-gold-500 rounded-lg shrink-0">
                             <Armchair className="h-4 w-4" />
                         </div>
                         <span className="font-bold text-slate-800">{tableInfo}</span>
@@ -111,7 +111,7 @@ export const ReservationCard: React.FC<ReservationCardProps> = ({ reservation })
                     leftIcon={<Trash2 className="h-4 w-4" />}
                     className="w-full mt-6 py-2.5 hover:bg-rose-100 transition-colors"
                 >
-                    {cancelling ? 'Cancelling...' : 'Cancel Reservation'}
+                    {cancelling ? 'Cancelling Booking...' : 'Cancel Dining Booking'}
                 </Button>
             )}
         </Card>

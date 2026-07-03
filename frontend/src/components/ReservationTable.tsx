@@ -91,10 +91,10 @@ export const ReservationTable: React.FC<ReservationTableProps> = ({ reservations
                 <table className="min-w-full divide-y divide-slate-100/80 text-left text-sm">
                     <thead className="bg-slate-50/70 text-[10px] font-bold text-slate-450 uppercase tracking-widest border-b border-slate-100">
                         <tr>
-                            <th className="px-6 py-4.5">Customer</th>
+                            <th className="px-6 py-4.5">Guest Detail</th>
                             <th className="px-6 py-4.5">Date &amp; Time</th>
                             <th className="px-6 py-4.5 text-center">Guests</th>
-                            <th className="px-6 py-4.5">Assigned Table</th>
+                            <th className="px-6 py-4.5">Seating Assignment</th>
                             <th className="px-6 py-4.5">Status</th>
                             <th className="px-6 py-4.5 text-right">Actions</th>
                         </tr>
@@ -185,10 +185,10 @@ export const ReservationTable: React.FC<ReservationTableProps> = ({ reservations
                         <div className="space-y-6">
                             <div className="space-y-1.5">
                                 <h3 className="text-xl font-extrabold text-slate-800 tracking-tight">
-                                    Edit Reservation
+                                    Modify Dining Reservation
                                 </h3>
                                 <p className="text-xs text-slate-400 font-medium">
-                                    Adjusting booking details for {typeof resToEdit.customer === 'object' && resToEdit.customer !== null ? resToEdit.customer.name : 'Guest'}
+                                    Adjusting reservation preferences for guest {typeof resToEdit.customer === 'object' && resToEdit.customer !== null ? resToEdit.customer.name : 'Guest'}
                                 </p>
                             </div>
 
@@ -212,12 +212,12 @@ export const ReservationTable: React.FC<ReservationTableProps> = ({ reservations
                                 />
 
                                 <SelectField
-                                    label="Time Slot"
+                                    label="Preferred Time Slot"
                                     icon={<Clock className="h-4 w-4" />}
                                     error={errors.timeSlot?.message}
                                     {...register('timeSlot', { required: 'Time slot is required' })}
                                 >
-                                    <option value="">Select Slot</option>
+                                    <option value="">Select Time Slot</option>
                                     {TIME_SLOTS.map((slot) => (
                                         <option key={slot} value={slot}>{slot}</option>
                                     ))}
@@ -236,7 +236,7 @@ export const ReservationTable: React.FC<ReservationTableProps> = ({ reservations
                                 />
 
                                 <div className="bg-slate-50 border border-slate-150 rounded-xl p-4.5 text-xs text-slate-500 leading-relaxed font-semibold">
-                                    ℹ️ The ReserveEase system automatically calculates restaurant occupancy and assigns available physical table assets.
+                                    ℹ️ The ReserveEase system automatically recalculates restaurant occupancy and table floor availability to optimize guest seating layouts.
                                 </div>
 
                                 {/* Actions */}
@@ -245,7 +245,7 @@ export const ReservationTable: React.FC<ReservationTableProps> = ({ reservations
                                         Cancel
                                     </Button>
                                     <Button type="submit" className="shadow-md">
-                                        Reallocate &amp; Save
+                                        Confirm Allocation &amp; Save
                                     </Button>
                                 </div>
                             </form>
@@ -259,12 +259,12 @@ export const ReservationTable: React.FC<ReservationTableProps> = ({ reservations
                 isOpen={cancelModalOpen}
                 onClose={() => setCancelModalOpen(false)}
                 onConfirm={handleCancelConfirm}
-                title="Cancel Reservation"
-                message={`Are you sure you want to cancel the reservation for ${resToCancel && typeof resToCancel.customer === 'object' && resToCancel.customer !== null
+                title="Cancel Dining Reservation"
+                message={`Are you sure you want to cancel the table reservation for guest ${resToCancel && typeof resToCancel.customer === 'object' && resToCancel.customer !== null
                     ? resToCancel.customer.name
                     : 'this customer'
                     }? This action is irreversible.`}
-                confirmText="Cancel Reservation"
+                confirmText="Cancel Dining Reservation"
             />
         </div>
     );

@@ -46,12 +46,12 @@ export const ReservationForm: React.FC = () => {
     return (
         <Card className="w-full relative overflow-hidden border-slate-100/90 p-6 sm:p-8">
             {/* Top decorative gradient bar */}
-            <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-violet-500 to-indigo-600" />
+            <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-gold-500 to-forest-900" />
             
             <div className="space-y-6">
                 <div className="text-center space-y-1.5">
-                    <h2 className="text-xl font-extrabold text-slate-800 tracking-tight">Book a Table</h2>
-                    <p className="text-xs text-slate-400 font-medium">Select your preferences to check table availability</p>
+                    <h2 className="text-xl font-extrabold text-slate-800 tracking-tight">Reserve Your Table</h2>
+                    <p className="text-xs text-slate-400 font-medium">Select your preferred date, timing, and party size to reserve a table.</p>
                 </div>
                 
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
@@ -75,19 +75,19 @@ export const ReservationForm: React.FC = () => {
                         />
 
                         <SelectField
-                            label="Time Slot"
+                            label="Preferred Time Slot"
                             icon={<Clock className="h-4 w-4" />}
                             error={errors.timeSlot?.message}
                             {...register('timeSlot', { required: 'Time slot is required' })}
                         >
-                            <option value="">Select Slot</option>
+                            <option value="">Select Time Slot</option>
                             {TIME_SLOTS.map((slot) => (
                                 <option key={slot} value={slot}>{slot}</option>
                             ))}
                         </SelectField>
 
                         <FormField
-                            label="Number of Guests"
+                            label="Party Size (Number of Guests)"
                             type="number"
                             min="1"
                             placeholder="2"
@@ -103,10 +103,10 @@ export const ReservationForm: React.FC = () => {
                     <Button 
                         type="submit" 
                         isLoading={loading} 
-                        className="w-full mt-4 py-3 shadow-lg shadow-violet-650/15"
+                        className="w-full mt-4 py-3 bg-[#b89047] hover:bg-[#a6803b] text-white border-transparent shadow-lg shadow-gold-500/20"
                         rightIcon={<ArrowRight className="h-4 w-4 ml-1" />}
                     >
-                        {loading ? 'Booking Table...' : 'Confirm Reservation'}
+                        {loading ? 'Reserving Table...' : 'Confirm Seating Reservation'}
                     </Button>
                 </form>
             </div>

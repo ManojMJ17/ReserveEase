@@ -4,7 +4,7 @@ import { useAdminStore } from '../store/adminStore';
 import { useTableStore } from '../store/tableStore';
 import { StatsCard } from '../components/StatsCard';
 import { LoadingSpinner } from '../components/LoadingSpinner';
-import { Card, PageHeader, Badge } from '../components/ui';
+import { Card, Badge } from '../components/ui';
 import { CalendarDays, CalendarCheck, Armchair, CalendarX, ArrowRight, Settings, Users } from 'lucide-react';
 
 export const AdminDashboardPage: React.FC = () => {
@@ -44,25 +44,38 @@ export const AdminDashboardPage: React.FC = () => {
     }
 
     return (
-        <div className="space-y-10 max-w-7xl mx-auto">
-            <PageHeader
-                title="System Overview"
-                subtitle="Real-time analytics, reservation statistics, and configuration states."
-                hasDivider
-            />
+        <div className="space-y-10 max-w-7xl mx-auto animate-fade-in">
+            {/* Small Restaurant Hero Banner for Admin Dashboard */}
+            <div 
+                className="relative rounded-3xl overflow-hidden text-white p-6 sm:p-8 shadow-md border border-slate-900 bg-cover bg-center h-40 flex items-center"
+                style={{ backgroundImage: 'url("/images/fine_dining.jpg")' }}
+            >
+                {/* Dark overlay */}
+                <div className="absolute inset-0 bg-slate-950/75 z-0 pointer-events-none" />
+                
+                <div className="relative z-10 space-y-1">
+                    <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-widest bg-[#b89047]/20 text-[#FAF8F5] border border-[#b89047]/30 mb-1">
+                        Operations Console
+                    </span>
+                    <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight">Restaurant Operations</h1>
+                    <p className="text-slate-350 text-xs sm:text-sm font-medium">
+                        Monitor active seating capacities, real-time dining statistics, and floor occupancy.
+                    </p>
+                </div>
+            </div>
 
             {/* Stats Grids */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <StatsCard title="Total Reservations" value={totalReservations} icon={CalendarDays} colorClass="text-violet-650" bgClass="bg-violet-50/70" />
-                <StatsCard title="Today's Bookings"   value={todayReservations}  icon={CalendarCheck} colorClass="text-emerald-650" bgClass="bg-emerald-50/70" />
-                <StatsCard title="Active Tables"       value={activeTables}        icon={Armchair}      colorClass="text-sky-655"     bgClass="bg-sky-50/70" />
-                <StatsCard title="Cancelled Bookings"  value={cancelledReservations} icon={CalendarX}   colorClass="text-rose-650"    bgClass="bg-rose-50/70" />
+                <StatsCard title="Total Bookings" value={totalReservations} icon={CalendarDays} colorClass="text-violet-650" bgClass="bg-violet-50/70" />
+                <StatsCard title="Today's Seating"   value={todayReservations}  icon={CalendarCheck} colorClass="text-emerald-650" bgClass="bg-emerald-50/70" />
+                <StatsCard title="Configured Tables"       value={activeTables}        icon={Armchair}      colorClass="text-sky-655"     bgClass="bg-sky-50/70" />
+                <StatsCard title="Cancelled Dining"  value={cancelledReservations} icon={CalendarX}   colorClass="text-rose-650"    bgClass="bg-rose-50/70" />
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 {/* Left Columns: Operations */}
                 <div className="lg:col-span-2 space-y-6">
-                    <h2 className="text-lg font-bold text-slate-800 tracking-tight">Quick Operations</h2>
+                    <h2 className="text-lg font-bold text-slate-800 tracking-tight">Floor Operations</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         {/* Manage Reservations Card */}
                         <Card hoverable className="flex flex-col justify-between border-slate-100/80">
@@ -70,16 +83,16 @@ export const AdminDashboardPage: React.FC = () => {
                                 <div className="p-3 bg-violet-50 text-violet-655 rounded-xl w-fit">
                                     <Users className="h-5 w-5" />
                                 </div>
-                                <h3 className="text-base font-bold text-slate-800 mt-4">Reservations Logs</h3>
+                                <h3 className="text-base font-bold text-slate-800 mt-4">Dining Reservations</h3>
                                 <p className="text-slate-500 text-xs mt-1 leading-relaxed">
-                                    Track, reallocate, search, filter, or manually update reservation statuses.
+                                    Track gastronomy guest logs, adjust booking schedules, and update table allocation states.
                                 </p>
                             </div>
                             <button
                                 onClick={() => navigate('/admin/reservations')}
                                 className="mt-6 inline-flex items-center gap-1.5 text-xs font-bold text-violet-600 hover:text-violet-755 transition-colors w-fit group cursor-pointer"
                             >
-                                Open Reservations
+                                View Reservation Logs
                                 <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                             </button>
                         </Card>
@@ -90,16 +103,16 @@ export const AdminDashboardPage: React.FC = () => {
                                 <div className="p-3 bg-sky-50 text-sky-655 rounded-xl w-fit">
                                     <Settings className="h-5 w-5" />
                                 </div>
-                                <h3 className="text-base font-bold text-slate-800 mt-4">Table Layouts</h3>
+                                <h3 className="text-base font-bold text-slate-800 mt-4">Table Availability</h3>
                                 <p className="text-slate-500 text-xs mt-1 leading-relaxed">
-                                    Add physical dining tables, edit capacities, or adjust system allocation availability.
+                                    Manage restaurant floor assets, adjust party seating capacities, and configure table availability.
                                 </p>
                             </div>
                             <button
                                 onClick={() => navigate('/admin/tables')}
                                 className="mt-6 inline-flex items-center gap-1.5 text-xs font-bold text-sky-600 hover:text-sky-755 transition-colors w-fit group cursor-pointer"
                             >
-                                Open Tables Setup
+                                Configure Table Floor Layout
                                 <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                             </button>
                         </Card>
@@ -108,10 +121,10 @@ export const AdminDashboardPage: React.FC = () => {
 
                 {/* Right Column: Recent Activity Feed */}
                 <div className="space-y-6">
-                    <h2 className="text-lg font-bold text-slate-800 tracking-tight">Recent Activity</h2>
+                    <h2 className="text-lg font-bold text-slate-800 tracking-tight">Live Booking Activity</h2>
                     {recentReservations.length === 0 ? (
                         <Card className="p-6 text-center text-slate-400 text-xs border-dashed border-slate-200">
-                            No reservations recorded.
+                            No active dining bookings recorded.
                         </Card>
                     ) : (
                         <div className="space-y-3">

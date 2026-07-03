@@ -14,7 +14,7 @@ const variantStyles: Record<BadgeVariant, string> = {
     cancelled: 'bg-rose-50 text-rose-700 border-rose-100',
     active:    'bg-emerald-50 text-emerald-700 border-emerald-100',
     disabled:  'bg-slate-100 text-slate-600 border-slate-200/50',
-    info:      'bg-violet-50 text-violet-700 border-violet-100',
+    info:      'bg-gold-50 text-gold-700 border-gold-100',
     warning:   'bg-amber-50 text-amber-700 border-amber-100',
 };
 
@@ -23,7 +23,7 @@ const dotStyles: Record<BadgeVariant, string> = {
     cancelled: 'bg-rose-500',
     active:    'bg-emerald-500',
     disabled:  'bg-slate-400',
-    info:      'bg-violet-500',
+    info:      'bg-gold-500',
     warning:   'bg-amber-500',
 };
 
