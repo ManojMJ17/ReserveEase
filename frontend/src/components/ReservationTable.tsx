@@ -7,6 +7,7 @@ import { Edit2, Ban, Calendar, Clock, Users, X } from 'lucide-react';
 import { useAdminStore } from '../store/adminStore';
 import { TIME_SLOTS } from '../constants/timeSlots';
 import { ConfirmationModal } from './ConfirmationModal';
+import { Badge, Button, FormField, SelectField } from './ui';
 
 interface ReservationTableProps {
     reservations: Reservation[];
@@ -86,16 +87,16 @@ export const ReservationTable: React.FC<ReservationTableProps> = ({ reservations
     return (
         <div className="w-full">
             {/* Table layout wrapper */}
-            <div className="overflow-x-auto rounded-xl border border-slate-100 shadow-sm bg-white">
-                <table className="min-w-full divide-y divide-slate-100 text-left text-sm">
-                    <thead className="bg-slate-50 text-xs font-semibold text-slate-500 uppercase tracking-wider">
+            <div className="overflow-x-auto rounded-3xl border border-slate-100 premium-shadow-md bg-white">
+                <table className="min-w-full divide-y divide-slate-100/80 text-left text-sm">
+                    <thead className="bg-slate-50/70 text-[10px] font-bold text-slate-450 uppercase tracking-widest border-b border-slate-100">
                         <tr>
-                            <th className="px-6 py-4">Customer</th>
-                            <th className="px-6 py-4">Date & Time</th>
-                            <th className="px-6 py-4 text-center">Guests</th>
-                            <th className="px-6 py-4">Assigned Table</th>
-                            <th className="px-6 py-4">Status</th>
-                            <th className="px-6 py-4 text-right">Actions</th>
+                            <th className="px-6 py-4.5">Customer</th>
+                            <th className="px-6 py-4.5">Date &amp; Time</th>
+                            <th className="px-6 py-4.5 text-center">Guests</th>
+                            <th className="px-6 py-4.5">Assigned Table</th>
+                            <th className="px-6 py-4.5">Status</th>
+                            <th className="px-6 py-4.5 text-right">Actions</th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-100">
@@ -116,52 +117,49 @@ export const ReservationTable: React.FC<ReservationTableProps> = ({ reservations
                                 : 'Unassigned';
 
                             return (
-                                <tr key={res._id} className="hover:bg-slate-50/50 transition-colors">
-                                    <td className="px-6 py-4">
-                                        <div className="font-semibold text-slate-800">{customerName}</div>
-                                        <div className="text-xs text-slate-400 mt-0.5">{customerEmail}</div>
+                                <tr key={res._id} className="hover:bg-slate-50/40 transition-colors">
+                                    <td className="px-6 py-4.5">
+                                        <div className="font-bold text-slate-800">{customerName}</div>
+                                        <div className="text-xs text-slate-400 font-medium mt-0.5">{customerEmail}</div>
                                     </td>
-                                    <td className="px-6 py-4">
-                                        <div className="font-medium text-slate-700">{formattedDate}</div>
-                                        <div className="text-xs text-slate-400 mt-0.5">{res.timeSlot}</div>
+                                    <td className="px-6 py-4.5">
+                                        <div className="font-bold text-slate-700">{formattedDate}</div>
+                                        <div className="text-xs text-slate-400 font-semibold mt-0.5">{res.timeSlot}</div>
                                     </td>
-                                    <td className="px-6 py-4 text-center font-medium text-slate-700">
+                                    <td className="px-6 py-4.5 text-center font-bold text-slate-700">
                                         {res.guestCount}
                                     </td>
-                                    <td className="px-6 py-4">
-                                        <span className="font-medium text-slate-600">{tableInfo}</span>
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold uppercase tracking-wider ${isCancelled
-                                            ? 'bg-rose-50 text-rose-700 border border-rose-100'
-                                            : 'bg-emerald-50 text-emerald-700 border border-emerald-100'
-                                            }`}>
-                                            {res.status}
+                                    <td className="px-6 py-4.5">
+                                        <span className="font-bold text-slate-650 bg-slate-50 border border-slate-100 px-2.5 py-1 rounded-lg text-xs">
+                                            {tableInfo}
                                         </span>
                                     </td>
-                                    <td className="px-6 py-4 text-right">
+                                    <td className="px-6 py-4.5">
+                                        <Badge variant={isCancelled ? 'cancelled' : 'confirmed'} showDot>
+                                            {res.status}
+                                        </Badge>
+                                    </td>
+                                    <td className="px-6 py-4.5 text-right">
                                         {!isCancelled && (
                                             <div className="flex justify-end gap-2">
-                                                <button
-                                                    onClick={() => {
-                                                        setResToEdit(res);
-                                                        setEditModalOpen(true);
-                                                    }}
-                                                    className="p-1.5 text-slate-500 hover:text-violet-600 hover:bg-slate-100 rounded-lg transition-all cursor-pointer"
+                                                <Button
+                                                    variant="ghost"
+                                                    size="icon"
+                                                    onClick={() => { setResToEdit(res); setEditModalOpen(true); }}
+                                                    className="text-slate-450 hover:text-violet-600 hover:bg-violet-50/50"
                                                     title="Edit Reservation"
                                                 >
                                                     <Edit2 className="h-4 w-4" />
-                                                </button>
-                                                <button
-                                                    onClick={() => {
-                                                        setResToCancel(res);
-                                                        setCancelModalOpen(true);
-                                                    }}
-                                                    className="p-1.5 text-slate-500 hover:text-rose-600 hover:bg-slate-100 rounded-lg transition-all cursor-pointer"
+                                                </Button>
+                                                <Button
+                                                    variant="ghost"
+                                                    size="icon"
+                                                    onClick={() => { setResToCancel(res); setCancelModalOpen(true); }}
+                                                    className="text-slate-455 hover:text-rose-600 hover:bg-rose-50/50"
                                                     title="Cancel Reservation"
                                                 >
                                                     <Ban className="h-4 w-4" />
-                                                </button>
+                                                </Button>
                                             </div>
                                         )}
                                     </td>
@@ -175,135 +173,83 @@ export const ReservationTable: React.FC<ReservationTableProps> = ({ reservations
             {/* Edit modal */}
             {editModalOpen && resToEdit && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-                    <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-150" onClick={() => setEditModalOpen(false)}></div>
-                    <div className="relative bg-white rounded-2xl shadow-xl max-w-md w-full p-6 border border-slate-100 animate-in fade-in zoom-in-95 duration-150 z-10">
+                    <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-md transition-all duration-300" onClick={() => setEditModalOpen(false)} />
+                    <div className="relative bg-white rounded-3xl shadow-xl max-w-md w-full p-6 sm:p-8 border border-slate-100 animate-fade-in z-10">
                         <button
                             onClick={() => setEditModalOpen(false)}
-                            className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition-colors cursor-pointer"
+                            className="absolute top-4 right-4 p-1.5 rounded-lg text-slate-400 hover:text-slate-650 hover:bg-slate-50 transition-all cursor-pointer"
                         >
-                            <X className="h-5 w-5" />
+                            <X className="h-4 w-4" />
                         </button>
 
-                        <h3 className="text-lg font-bold text-slate-800 mb-6">
-                            Edit Reservation ({typeof resToEdit.customer === 'object' && resToEdit.customer !== null ? resToEdit.customer.name : 'Guest'})
-                        </h3>
-
-                        <form onSubmit={handleSubmit(handleEditSubmit)} className="space-y-4">
-                            {/* Date Field */}
-                            <div>
-                                <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">
-                                    Reservation Date
-                                </label>
-                                <div className="relative rounded-lg shadow-sm">
-                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                        <Calendar className="h-5 w-5 text-slate-400" />
-                                    </div>
-                                    <input
-                                        type="date"
-                                        min={todayStr}
-                                        className={`block w-full pl-10 pr-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 ${errors.reservationDate
-                                            ? 'border-rose-300 focus:ring-rose-200 focus:border-rose-500'
-                                            : 'border-slate-200 focus:ring-violet-100 focus:border-violet-500'
-                                            }`}
-                                        {...register('reservationDate', {
-                                            required: 'Reservation date is required',
-                                            validate: (value) => {
-                                                const today = new Date();
-                                                today.setUTCHours(0, 0, 0, 0);
-                                                const inputDate = new Date(value);
-                                                inputDate.setUTCHours(0, 0, 0, 0);
-                                                return inputDate >= today || 'Date cannot be in the past';
-                                            }
-                                        })}
-                                    />
-                                </div>
-                                {errors.reservationDate && (
-                                    <p className="mt-1 text-xs text-rose-500 font-medium">{errors.reservationDate.message}</p>
-                                )}
+                        <div className="space-y-6">
+                            <div className="space-y-1.5">
+                                <h3 className="text-xl font-extrabold text-slate-800 tracking-tight">
+                                    Edit Reservation
+                                </h3>
+                                <p className="text-xs text-slate-400 font-medium">
+                                    Adjusting booking details for {typeof resToEdit.customer === 'object' && resToEdit.customer !== null ? resToEdit.customer.name : 'Guest'}
+                                </p>
                             </div>
 
-                            {/* Time Slot Field */}
-                            <div>
-                                <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">
-                                    Time Slot
-                                </label>
-                                <div className="relative rounded-lg shadow-sm">
-                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                        <Clock className="h-5 w-5 text-slate-400" />
-                                    </div>
-                                    <select
-                                        className={`block w-full pl-10 pr-3 py-2 border rounded-lg text-sm bg-white focus:outline-none focus:ring-2 ${errors.timeSlot
-                                            ? 'border-rose-300 focus:ring-rose-200 focus:border-rose-500'
-                                            : 'border-slate-200 focus:ring-violet-100 focus:border-violet-500'
-                                            }`}
-                                        {...register('timeSlot', {
-                                            required: 'Time slot is required'
-                                        })}
-                                    >
-                                        <option value="">Select Slot</option>
-                                        {TIME_SLOTS.map((slot) => (
-                                            <option key={slot} value={slot}>
-                                                {slot}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </div>
-                                {errors.timeSlot && (
-                                    <p className="mt-1 text-xs text-rose-500 font-medium">{errors.timeSlot.message}</p>
-                                )}
-                            </div>
+                            <form onSubmit={handleSubmit(handleEditSubmit)} className="space-y-4">
+                                <FormField
+                                    label="Reservation Date"
+                                    type="date"
+                                    min={todayStr}
+                                    icon={<Calendar className="h-4 w-4" />}
+                                    error={errors.reservationDate?.message}
+                                    {...register('reservationDate', {
+                                        required: 'Reservation date is required',
+                                        validate: (value) => {
+                                            const today = new Date();
+                                            today.setUTCHours(0, 0, 0, 0);
+                                            const inputDate = new Date(value);
+                                            inputDate.setUTCHours(0, 0, 0, 0);
+                                            return inputDate >= today || 'Date cannot be in the past';
+                                        }
+                                    })}
+                                />
 
-                            {/* Guest Count Field */}
-                            <div>
-                                <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">
-                                    Number of Guests
-                                </label>
-                                <div className="relative rounded-lg shadow-sm">
-                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                        <Users className="h-5 w-5 text-slate-400" />
-                                    </div>
-                                    <input
-                                        type="number"
-                                        min="1"
-                                        className={`block w-full pl-10 pr-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 ${errors.guestCount
-                                            ? 'border-rose-300 focus:ring-rose-200 focus:border-rose-500'
-                                            : 'border-slate-200 focus:ring-violet-100 focus:border-violet-500'
-                                            }`}
-                                        {...register('guestCount', {
-                                            required: 'Guest count is required',
-                                            min: {
-                                                value: 1,
-                                                message: 'Guest count must be at least 1'
-                                            }
-                                        })}
-                                    />
-                                </div>
-                                {errors.guestCount && (
-                                    <p className="mt-1 text-xs text-rose-500 font-medium">{errors.guestCount.message}</p>
-                                )}
-                            </div>
-
-                            <div className="bg-slate-50 border border-slate-100 rounded-lg p-3 text-xs text-slate-500">
-                                * The system will automatically run table optimization algorithms and reallocate a suitable table based on availability for the new configuration.
-                            </div>
-
-                            {/* Actions */}
-                            <div className="flex justify-end gap-3 mt-8">
-                                <button
-                                    type="button"
-                                    onClick={() => setEditModalOpen(false)}
-                                    className="px-4 py-2 text-sm font-semibold text-slate-600 bg-slate-50 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer"
+                                <SelectField
+                                    label="Time Slot"
+                                    icon={<Clock className="h-4 w-4" />}
+                                    error={errors.timeSlot?.message}
+                                    {...register('timeSlot', { required: 'Time slot is required' })}
                                 >
-                                    Cancel
-                                </button>
-                                <button
-                                    type="submit"
-                                    className="px-4 py-2 text-sm font-semibold text-white bg-violet-600 hover:bg-violet-700 rounded-lg transition-colors cursor-pointer"
-                                >
-                                    Reallocate & Save
-                                </button>
-                            </div>
-                        </form>
+                                    <option value="">Select Slot</option>
+                                    {TIME_SLOTS.map((slot) => (
+                                        <option key={slot} value={slot}>{slot}</option>
+                                    ))}
+                                </SelectField>
+
+                                <FormField
+                                    label="Number of Guests"
+                                    type="number"
+                                    min="1"
+                                    icon={<Users className="h-4 w-4" />}
+                                    error={errors.guestCount?.message}
+                                    {...register('guestCount', {
+                                        required: 'Guest count is required',
+                                        min: { value: 1, message: 'Guest count must be at least 1' }
+                                    })}
+                                />
+
+                                <div className="bg-slate-50 border border-slate-150 rounded-xl p-4.5 text-xs text-slate-500 leading-relaxed font-semibold">
+                                    ℹ️ The ReserveEase system automatically calculates restaurant occupancy and assigns available physical table assets.
+                                </div>
+
+                                {/* Actions */}
+                                <div className="flex justify-end gap-3 mt-8 border-t border-slate-100 pt-6">
+                                    <Button variant="secondary" type="button" onClick={() => setEditModalOpen(false)}>
+                                        Cancel
+                                    </Button>
+                                    <Button type="submit" className="shadow-md">
+                                        Reallocate &amp; Save
+                                    </Button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             )}

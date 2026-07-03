@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Calendar, Clock, Users, Armchair, Trash2 } from 'lucide-react';
 import type { Reservation } from '../types/index';
 import { useReservationStore } from '../store/reservationStore';
+import { Card, Badge, Button } from './ui';
 
 interface ReservationCardProps {
     reservation: Reservation;
@@ -50,57 +51,70 @@ export const ReservationCard: React.FC<ReservationCardProps> = ({ reservation })
         : 'Assigned Automatically';
 
     return (
-        <div className="bg-white rounded-xl border border-slate-100 shadow-sm p-6 flex flex-col justify-between transition-all hover:shadow-md">
-            <div>
+        <Card hoverable className="flex flex-col justify-between border-slate-100/90 relative overflow-hidden group">
+            {/* Soft border indicator at the top based on status */}
+            <div className={`absolute top-0 left-0 right-0 h-1 transition-all duration-300 ${
+                isCancelled ? 'bg-rose-500' : 'bg-violet-600'
+            }`} />
+
+            <div className="pt-2">
                 {/* Header Status */}
-                <div className="flex justify-between items-center mb-4">
-                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold uppercase tracking-wider ${isCancelled
-                        ? 'bg-rose-50 text-rose-700 border border-rose-100'
-                        : 'bg-emerald-50 text-emerald-700 border border-emerald-100'
-                        }`}>
+                <div className="flex justify-between items-center mb-5">
+                    <Badge variant={isCancelled ? 'cancelled' : 'confirmed'} showDot>
                         {reservation.status}
-                    </span>
-                    <div className="text-xs text-slate-400 font-medium">
+                    </Badge>
+                    <div className="text-[10px] text-slate-400 font-bold tracking-widest bg-slate-50 border border-slate-100/50 px-2 py-0.5 rounded-md">
                         ID: {reservation._id.slice(-6).toUpperCase()}
                     </div>
                 </div>
 
                 {/* Details list */}
-                <div className="space-y-3">
-                    <div className="flex items-center gap-2.5 text-sm text-slate-600">
-                        <Calendar className="h-4 w-4 text-slate-400" />
-                        <span className="font-semibold text-slate-800">{formattedDate}</span>
+                <div className="space-y-4">
+                    <div className="flex items-center gap-3 text-sm text-slate-600">
+                        <div className="p-2 bg-slate-50 text-slate-400 rounded-lg shrink-0">
+                            <Calendar className="h-4 w-4" />
+                        </div>
+                        <span className="font-bold text-slate-800">{formattedDate}</span>
                     </div>
 
-                    <div className="flex items-center gap-2.5 text-sm text-slate-600">
-                        <Clock className="h-4 w-4 text-slate-400" />
-                        <span>{reservation.timeSlot}</span>
+                    <div className="flex items-center gap-3 text-sm text-slate-600">
+                        <div className="p-2 bg-slate-50 text-slate-400 rounded-lg shrink-0">
+                            <Clock className="h-4 w-4" />
+                        </div>
+                        <span className="font-semibold text-slate-700">{reservation.timeSlot}</span>
                     </div>
 
-                    <div className="flex items-center gap-2.5 text-sm text-slate-600">
-                        <Users className="h-4 w-4 text-slate-400" />
-                        <span>{reservation.guestCount} {reservation.guestCount === 1 ? 'Guest' : 'Guests'}</span>
+                    <div className="flex items-center gap-3 text-sm text-slate-600">
+                        <div className="p-2 bg-slate-50 text-slate-400 rounded-lg shrink-0">
+                            <Users className="h-4 w-4" />
+                        </div>
+                        <span className="font-semibold text-slate-700">
+                            {reservation.guestCount} {reservation.guestCount === 1 ? 'Guest' : 'Guests'}
+                        </span>
                     </div>
 
-                    <div className="flex items-center gap-2.5 text-sm text-slate-600 border-t border-slate-50 pt-2 mt-2">
-                        <Armchair className="h-4 w-4 text-violet-500" />
-                        <span className="font-medium text-slate-700">{tableInfo}</span>
+                    <div className="flex items-center gap-3 text-sm border-t border-slate-100 pt-4 mt-2">
+                        <div className="p-2 bg-violet-50 text-violet-600 rounded-lg shrink-0">
+                            <Armchair className="h-4 w-4" />
+                        </div>
+                        <span className="font-bold text-slate-800">{tableInfo}</span>
                     </div>
                 </div>
             </div>
 
             {/* Action Buttons */}
             {!isCancelled && (
-                <button
+                <Button
+                    variant="soft-danger"
+                    isLoading={cancelling}
                     onClick={handleCancel}
-                    disabled={cancelling}
-                    className="w-full flex items-center justify-center gap-2 mt-6 py-2 px-4 border border-rose-100 rounded-lg text-sm font-semibold text-rose-600 bg-rose-50/50 hover:bg-rose-50 hover:text-rose-700 transition-colors disabled:opacity-50 cursor-pointer"
+                    leftIcon={<Trash2 className="h-4 w-4" />}
+                    className="w-full mt-6 py-2.5 hover:bg-rose-100 transition-colors"
                 >
-                    <Trash2 className="h-4 w-4" />
                     {cancelling ? 'Cancelling...' : 'Cancel Reservation'}
-                </button>
+                </Button>
             )}
-        </div>
+        </Card>
     );
 };
 

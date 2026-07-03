@@ -6,6 +6,7 @@ import { LoadingSpinner } from '../components/LoadingSpinner';
 import { EmptyState } from '../components/EmptyState';
 import { PlusCircle } from 'lucide-react';
 import type { Table } from '../types/index';
+import { PageHeader, Button } from '../components/ui';
 
 export const AdminTablesPage: React.FC = () => {
     const { fetchTables, tables, loading } = useTableStore();
@@ -27,27 +28,29 @@ export const AdminTablesPage: React.FC = () => {
     };
 
     return (
-        <div className="space-y-6">
-            {/* Header */}
-            <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4 border-b border-slate-100 pb-4">
-                <div>
-                    <h1 className="text-2xl font-bold text-slate-800">Tables Configuration</h1>
-                    <p className="text-slate-500 text-sm mt-1">Configure individual table capacity parameters and status values.</p>
-                </div>
-                <button
-                    onClick={handleAdd}
-                    className="inline-flex items-center gap-2 px-4 py-2 border border-transparent text-sm font-semibold rounded-lg text-white bg-violet-600 hover:bg-violet-700 shadow-sm transition-colors w-fit cursor-pointer"
-                >
-                    <PlusCircle className="h-4.5 w-4.5" />
-                    Add Table
-                </button>
-            </div>
+        <div className="space-y-8 max-w-7xl mx-auto">
+            <PageHeader
+                title="Tables Configuration"
+                subtitle="Establish seating capacities, modify labels, or toggle online reservation availability."
+                hasDivider
+                action={
+                    <Button 
+                        onClick={handleAdd} 
+                        leftIcon={<PlusCircle className="h-4 w-4" />}
+                        className="bg-violet-650 hover:bg-violet-550 text-white shadow-md shadow-violet-650/15"
+                    >
+                        Add New Table
+                    </Button>
+                }
+            />
 
             {/* Grid display */}
             {loading && tables.length === 0 ? (
-                <LoadingSpinner />
+                <div className="py-20">
+                    <LoadingSpinner />
+                </div>
             ) : tables.length === 0 ? (
-                <EmptyState message="No tables have been added yet. Click 'Add Table' to add your first physical table asset!" />
+                <EmptyState message="No physical tables have been configured. Create table records to enable booking allocations!" />
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {tables.map((table) => (
