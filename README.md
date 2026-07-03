@@ -128,19 +128,16 @@ ReserveEase/
 - `PATCH /api/tables/:id` - Update table capacity or enabled status
 - `DELETE /api/tables/:id` - Delete a dining table configuration
 
-## Screenshots
-
-*Note: Screenshots can be added to this section later once local deployment captures are complete.*
 
 ## Screenshots
 
 | Login | Register |
 |-------|----------|
-| ![](frontend/public/screenshots/login_page.png) | ![](frontend/public/screenshots/register.png) |
+| ![](frontend/public/screenshots/login_page.png) | ![](frontend/public/screenshots/register_page.png) |
 
 | Customer Dashboard | Reservations |
 |--------------------|--------------|
-| ![](frontend/public/screenshots/customer-dashboard.png) | ![](frontend/public/screenshots/reservations.png) |
+| ![](frontend/public/screenshots/customer_dashboard.png) | ![](frontend/public/screenshots/customer_reservation.png) |
 
 | Admin Dashboard | Admin Reservations |
 |-----------------|--------------------|
@@ -150,19 +147,6 @@ ReserveEase/
 |--------------|
 | ![](frontend/public/screenshots/admin_table.png) |
 
-
-
-### Login
-
-### Customer Dashboard
-
-### Reservations
-
-### Admin Dashboard
-
-### Admin Reservations
-
-### Admin Tables
 
 ## Future Improvements
 
