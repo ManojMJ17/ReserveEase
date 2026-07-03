@@ -136,7 +136,7 @@ ReserveEase/
 
 | Login | Register |
 |-------|----------|
-| ![](./frontend/public/screenshots/login.png) | ![](./frontend/public/screenshots/register.png) |
+| ![](frontend/public/screenshots/login_page.png) | ![](./frontend/public/screenshots/register.png) |
 
 | Customer Dashboard | Reservations |
 |--------------------|--------------|
@@ -144,11 +144,11 @@ ReserveEase/
 
 | Admin Dashboard | Admin Reservations |
 |-----------------|--------------------|
-| ![](./frontend/public/screenshots/admin-dashboard.png) | ![](./frontend/public/screenshots/admin-reservations.png) |
+| ![](./frontend/public/screenshots/admin_dashboard.png) | ![](./frontend/public/screenshots/admin_reservations.png) |
 
 | Admin Tables |
 |--------------|
-| ![](./frontend/public/screenshots/admin-tables.png) |
+| ![](./frontend/public/screenshots/admin_table.png) |
 
 
 
