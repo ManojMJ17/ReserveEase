@@ -132,6 +132,26 @@ ReserveEase/
 
 *Note: Screenshots can be added to this section later once local deployment captures are complete.*
 
+## Screenshots
+
+| Login | Register |
+|-------|----------|
+| ![](./frontend/public/screenshots/login.png) | ![](./frontend/public/screenshots/register.png) |
+
+| Customer Dashboard | Reservations |
+|--------------------|--------------|
+| ![](./frontend/public/screenshots/customer-dashboard.png) | ![](./frontend/public/screenshots/reservations.png) |
+
+| Admin Dashboard | Admin Reservations |
+|-----------------|--------------------|
+| ![](./frontend/public/screenshots/admin-dashboard.png) | ![](./frontend/public/screenshots/admin-reservations.png) |
+
+| Admin Tables |
+|--------------|
+| ![](./frontend/public/screenshots/admin-tables.png) |
+
+
+
 ### Login
 
 ### Customer Dashboard
